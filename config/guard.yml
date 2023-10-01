@@ -1,0 +1,18 @@
+# canvas instances <domain>.instructure.com
+# the root_account instance
+root_instance: yours
+
+# instance domains and shard prefix
+# INT~ROOTACCOUNT
+# 'YES'
+domain_shard_id:
+  yours: 'INT'
+  possibly: 'INT'
+  maybe: 'INT'
+  more: 'INT'
+
+# canvas api
+api:
+  environment: beta
+  token: # favor ENV
+  user_agent: ccsd-xpack-sis/crossing-guard

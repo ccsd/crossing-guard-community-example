@@ -1,0 +1,7 @@
+# aws/sqs
+aws:
+  region: # favor ENV
+  access_key_id: # favor ENV
+  secret_access_key: # favor ENV
+  queue: # favor ENV
+  qbeta: # favor ENV

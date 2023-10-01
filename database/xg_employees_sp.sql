@@ -1,0 +1,17 @@
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+USE Yours;
+GO
+ALTER PROCEDURE [dbo].[xg_employees]
+  @user_id VARCHAR(50)
+AS
+
+SET NOCOUNT ON;
+
+EXEC ('SELECT * FROM YOUR.SCH_FACULTY_VW WHERE user_id = ?', @user_id)
+
+RETURN
+
+GO

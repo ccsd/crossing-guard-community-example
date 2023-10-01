@@ -1,0 +1,9 @@
+# database
+adapter: tinytds
+max_connections: 12
+timeout: 24
+pool_timeout: 24
+host: # favor ENV
+data: # favor ENV
+user: # favor ENV
+pass: # favor ENV
