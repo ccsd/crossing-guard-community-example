@@ -14,6 +14,8 @@ class CrossingGuard
 
     @logger = Logger.new("#{CFG[:path]}/logs/xguard-#{@env}.log", 'daily')
     @requests_log = Logger.new("#{CFG[:path]}/logs/xguard-#{@env}-requests.log", 'daily')
+
+    @sns = Aws::SNS::Client.new(region: CFG['aws']['region'])
   end
 
   def run!
