@@ -5,3 +5,4 @@ aws:
   secret_access_key: # favor ENV
   queue: # favor ENV
   qbeta: # favor ENV
+  sns_topic: # favor ENV
