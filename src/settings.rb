@@ -17,6 +17,9 @@ CFG['aws']['region'] = CFG_SQS['aws']['region']
 CFG['aws']['queue'] = ENV['XGUARD_QUEUE'] || CFG_SQS['aws']['queue']
 CFG['aws']['qbeta'] = ENV['XGUARD_QBETA'] || CFG_SQS['aws']['qbeta']
 
+# sns topic
+CFG['aws']['sns_topic'] = ENV['XGUARD_SNS_TOPIC'] || CFG_SQS['aws']['sns_topic']
+
 # database config
 CFG_DB = YAML.load_file("#{env[:path]}/config/database.yml")
 CFG['db'] = CFG_DB
