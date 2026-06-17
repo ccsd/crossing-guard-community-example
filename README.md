@@ -35,6 +35,9 @@ The following user groups are allowed in their respective courses/accounts: `DEM
 ## Live Events
 Create a Live Events subscription for the user-generated `enrollment_created` and `enrollment_updated` events.
 
+## SNS Notifications
+Can send an SNS Notification for fatal DB connection errors to subscribers if configured. Configure Topic in your the same reqion as your queue for easier config. Setup topic with email subscribers.
+
 ## Discuss
 [https://community.instructure.com/en/discussion/582594/the-crossing-guard/p1#M9651](https://community.instructure.com/en/discussion/582594/the-crossing-guard/p1#M9651)
 
