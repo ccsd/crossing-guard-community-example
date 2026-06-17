@@ -38,9 +38,12 @@ class CrossingGuard
 
         # enrollments from other instances, because of consortium pop-ins... deal with below
         # next unless DOMAIN_SHARD_ID.select { |i,id| i if event['body']['enrollment_id'].start_with? id }.any?
-
-        # associated student/observer pair
-        next if event['body']['type'] == 'ObserverEnrollment' && event['metadata']['user_sis_id'].nil? && !event['body']['associated_user_id'].nil?
+        
+        # skip any observer enrollment that is actively linked to a student
+        if event['body']['type'] == 'ObserverEnrollment' && !event['body']['associated_user_id'].nil?
+          puts "ignored: observer linked to student" if $stdout.isatty
+          next
+        end
 
         # expect a second enrollment_updated event for any enrollment updated
         guard = reconcile(event)
