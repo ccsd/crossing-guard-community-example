@@ -42,7 +42,6 @@ CONNECTION_ERRORS = [
   # tinytds
   'Adaptive Server connection timed out',
   'Cannot continue the execution because the session is in the kill state',
-  'Login failed for user',
   'Read from the server failed',
   'Server name not found in configuration files',
   'The transaction log for database',
@@ -53,7 +52,15 @@ CONNECTION_ERRORS = [
   'is being recovered. Waiting until recovery is finished',
   'because the database replica is not in the PRIMARY or SECONDARY role',
   'is participating in an availability group and is currently not accessible for queries',
-  'DBPROCESS is dead or not enabled'
+  'DBPROCESS is dead or not enabled',
+  'is not configured for RPC'
+].freeze
+
+FATAL_ERRORS = [
+   # tinytds
+  'is not configured for RPC',
+  'Login failed',
+  'Permission denied'
 ].freeze
 
 def connection_error?(err_str)
