@@ -1,6 +1,6 @@
 
 AllCops:
-  TargetRubyVersion: 2.6
+  TargetRubyVersion: 4.0
   Exclude:
     - 'dev/**/*'
     - 'src/lib/tasks/**/*'
