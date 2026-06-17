@@ -314,14 +314,39 @@ class CrossingGuard
   end
 
   def db_reconnect(err_str)
-    return false if connection_error?(err_str) == false
+    # check if the error is fatal (defined in your FATAL_ERRORS list)
+    if err_str.match? Regexp.union(FATAL_ERRORS)
+      @logger.fatal("FATAL DATABASE ERROR: #{err_str}")
+      
+      # send sns notification before shutting down if enabled
+      if CFG['aws'] && CFG['aws']['sns_topic']
+        begin
+          subject = "CRITICAL: [#{@env.upcase}] CrossingGuard Shutting Down - Database Error"
+          message = "CrossingGuard (#{@env}) has encountered a fatal database error and is shutting down.\n\nError: #{err_str}\nTimestamp: #{Time.now}"
+          
+          @sns.publish({
+            topic_arn: CFG['aws']['sns_topic'], # Using the configuration value directly
+            subject: subject,
+            message: message
+          })
+        rescue => e
+          @logger.error("Failed to send SNS notification: #{e.message}")
+        end
+      else
+        @logger.warn("Skipping SNS notification: CFG['aws']['sns_topic'] is not configured.")
+      end
 
-    DB.connect(DB_PARAMS) if DB.disconnect
-    raise err_str if DB.test_connection != true
+      # force the application to stop
+      stop!
+      exit(1)
+    end
 
-    DB.test_connection
-  rescue => e
-    @logger.fatal(e.message)
-    raise e.message
+    if connection_error?(err_str)
+      @logger.warn("Transient database error detected, attempting reconnect: #{err_str}")
+      DB.connect(DB_PARAMS) if DB.disconnect
+      return DB.test_connection == true
+    end
+
+    false
   end
 end
