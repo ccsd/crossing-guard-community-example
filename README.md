@@ -36,7 +36,7 @@ The following user groups are allowed in their respective courses/accounts: `DEM
 Create a Live Events subscription for the user-generated `enrollment_created` and `enrollment_updated` events.
 
 ## Discuss
-https://community.canvaslms.com/t5/Canvas-Developers-Group/The-Crossing-Guard/m-p/582594#M9651
+[https://community.instructure.com/en/discussion/582594/the-crossing-guard/p1#M9651](https://community.instructure.com/en/discussion/582594/the-crossing-guard/p1#M9651)
 
 
 #
